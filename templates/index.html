@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- {% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}"> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="banner">
+      <div class="banner-text">
+        <h1>ToDo</h1>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form method="POST" class="p-3 shadow">
+        {% csrf_token %}
+        <div class="form-group">
+          <input class="form-group" type="text" name="taskname" placeholder="Enter your tasks" required>
+        </div>
+        <div class="form-group">
+          <input class="form-group" type="text" name="priority" placeholder="Priority" required>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="date" name="date" placeholder="Date" required>
+        </div>
+        <input class="btn btn-outline-primary" type="submit">
+      </form>
+     
+      
+      
+     
+    </div>
+    <div class="col-md-6">
+      <h4> Task To Be Completed</h4>
+      {% for i in tasks %}
+      <div class=" shadow card">
+        <div class="card-body">
+          <h5 class="card-title">{{i.task}}</h5>
+          <p><b>{{i.priority}}</b></p>
+          <p><b>{{i.date}}</b></p>
+          <a class="btn btn-danger" href="{% url 'taskapp:delete' i.id %}">Done</a>
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+<!-- 
+    {% for i in tasks %}
+    <div class="card h-50 w-80 mb-5">
+
+      <div class="card-body">
+        <h5 class="card-title">{{i.task}}</h5>
+        <p>{{i.priority}}</p>
+        <p class="card-text">
+        {{i.time}}
+        </p>
+       <a class="btn btn-warning" href="{% url 'taskapp:update' i.id %}">Update</a><br><br>
+       <a class="btn btn-danger" href="">Delete</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div> -->

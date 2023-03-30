@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% blockcontent %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+      {% for i in tasks %}
+    <h5 class="card-title">{{i.task}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{i.priority}}</h6>
+    <p class="card-text">{{i.time}}</p>
+    <a href="{% url 'taskapp:delete' i.id %}" class="card-link">Delete</a>
+    <a href="{% url 'taskapp:update' i.id %}" class="card-link">Update</a>
+  </div>
+</div>
+
+{% endblock %}
